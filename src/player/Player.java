@@ -5,6 +5,7 @@ public abstract class Player {
     protected int dmg;
     protected int xPos;
     protected int yPos;
+    protected String type;
 
     public abstract void setHp(int hpVal);
     public abstract int getHp();

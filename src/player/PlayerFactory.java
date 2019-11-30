@@ -1,23 +1,23 @@
 package player;
 
-final class PlayerFactory {
+public final class PlayerFactory {
     private static PlayerFactory instance = null;
     private PlayerFactory() {
         //
     }
-    static PlayerFactory getInstance() {
+    public static PlayerFactory getInstance() {
         if (instance == null) {
             instance = new PlayerFactory();
         }
         return instance;
     }
 
-    Player createPlayer(final char type) {
+    public Player createPlayer(final String type) {
         switch (type) {
-            case 'K': return new Knight();
-            case 'R': return new Rogue();
-            case 'P': return new Pyromancer();
-            case 'W': return new Wizard();
+            case "K": return new Knight();
+            case "R": return new Rogue();
+            case "P": return new Pyromancer();
+            case "W": return new Wizard();
             default: return null;
         }
     }
