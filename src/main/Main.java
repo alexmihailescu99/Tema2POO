@@ -16,9 +16,13 @@ public final class Main {
             for (int j = 0; j < Game.getInstance().getPlayers().size(); ++j) {
                 Player currPlayer = Game.getInstance().getPlayers().get(j);
                 String currCommand = Game.getInstance().getPlayerCommands().get(j);
-                currPlayer.move(currCommand);
+                if (currPlayer.getCanMove()) {
+                    currPlayer.move(currCommand);
+                }
             }
             Game.getInstance().checkPositions();
+            Game.getInstance().finaliseRound();
         }
+        Game.getInstance().printStandings();
     }
 }

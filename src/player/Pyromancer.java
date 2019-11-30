@@ -7,6 +7,10 @@ public final class Pyromancer extends Player {
         this.setFavorableTerrain("V");
     }
     @Override
+    public  void update() {
+        //
+    }
+    @Override
     public void isAttackedBy(Player player) {
         player.attacks(this);
     }

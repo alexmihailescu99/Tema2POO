@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public abstract class Player {
     protected int hp;
+    protected int maxHp;
     protected int dmg;
     protected int level;
     protected int exp;
@@ -15,7 +16,7 @@ public abstract class Player {
     protected int damageOverTime;
     protected String favorableTerrain;
     protected ArrayList<Float> modifiers;
-
+    protected boolean isDead;
     // LEVEL 0, EXP 0, EMPTY MODIFIERS ARRAY, NO DAMAGE OVER TIME
     Player() {
         this.level = 0;
@@ -23,6 +24,7 @@ public abstract class Player {
         this.modifiers = new ArrayList<>();
         this.suffersDamageOverTime = false;
         this.canMove = true;
+        this.isDead = false;
     }
     public final void move(String direction) {
         char dir = direction.charAt(0);
@@ -52,6 +54,18 @@ public abstract class Player {
     }
     public final int getHp() {
         return this.hp;
+    }
+    public final int getMaxHp() {
+        return this.maxHp;
+    }
+    public final void setMaxHp(int maxHpVal) {
+        this.maxHp = maxHpVal;
+    }
+    public final boolean getIsDead() {
+        return isDead;
+    }
+    public final void setDead(boolean dead) {
+        isDead = dead;
     }
     public final void setDmg(int dmgVal) {
         this.dmg = dmgVal;
@@ -124,4 +138,5 @@ public abstract class Player {
     public abstract void attacks(Pyromancer pyromancer);
     public abstract void attacks(Rogue rogue);
     public abstract void attacks(Wizard wizard);
+    public abstract void update();
 }

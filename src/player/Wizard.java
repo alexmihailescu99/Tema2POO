@@ -7,6 +7,10 @@ public final class Wizard extends Player {
         this.setFavorableTerrain("D");
     }
     @Override
+    public  void update() {
+        //
+    }
+    @Override
     public void isAttackedBy(Player player) {
         player.attacks(this);
     }

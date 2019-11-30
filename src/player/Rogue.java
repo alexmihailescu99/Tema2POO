@@ -7,6 +7,10 @@ public final class Rogue extends Player {
         this.setFavorableTerrain("W");
     }
     @Override
+    public  void update() {
+        //
+    }
+    @Override
     public void isAttackedBy(Player player) {
         player.attacks(this);
     }

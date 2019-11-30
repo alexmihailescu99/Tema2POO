@@ -79,4 +79,28 @@ final class Game {
             }
         }
     }
+    void kill(Player player) {
+        player.setXPos(-1);
+        player.setYPos(-1);
+    }
+
+    void finaliseRound() {
+        for (Player player : players) {
+            if (player.getIsDead()) {
+                kill(player);
+            }
+        }
+    }
+
+    void printStandings() {
+        for (Player player : players) {
+            if (!player.getIsDead()) {
+                System.out.println(player.getType() + " " + player.getLevel()
+                + " " + player.getExp() + " " + player.getHp() + " "
+                        + player.getXPos() + " " + player.getYPos());
+            } else {
+                System.out.println(player.getType() + " dead");
+            }
+        }
+    }
 }
