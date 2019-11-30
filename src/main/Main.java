@@ -1,5 +1,7 @@
 package main;
 
+import player.Player;
+
 public final class Main {
     private Main() {
         //
@@ -12,8 +14,11 @@ public final class Main {
         Game.getInstance().init();
         for (int i = 0; i < Game.getInstance().getRounds(); ++i) {
             for (int j = 0; j < Game.getInstance().getPlayers().size(); ++j) {
-                System.out.println(Game.getInstance().getPlayers().get(j));
+                Player currPlayer = Game.getInstance().getPlayers().get(j);
+                String currCommand = Game.getInstance().getPlayerCommands().get(j);
+                currPlayer.move(currCommand);
             }
+            Game.getInstance().checkPositions();
         }
     }
 }

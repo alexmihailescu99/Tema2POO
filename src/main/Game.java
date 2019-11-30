@@ -12,6 +12,11 @@ final class Game {
     private GameInput gameInput;
     private int rounds;
     private int noPlayers;
+
+    ArrayList<String> getPlayerCommands() {
+        return playerCommands;
+    }
+
     // This will hold the map cell types
     private ArrayList<ArrayList<String>> cellTypes;
     // This will hold the player information(race, positions)
@@ -40,6 +45,7 @@ final class Game {
             currPlayer.setYPos(Integer.parseInt(splitted[2]));
             players.add(currPlayer);
         }
+        playerCommands = gameInput.getPlayerCommands();
     }
 
     void setGameInput(GameInput gameInputVal) {
@@ -58,5 +64,19 @@ final class Game {
 
     int getRounds() {
         return rounds;
+    }
+
+    void checkPositions() {
+        for (int i = 0; i < players.size(); ++i) {
+            Player firstPlayer = players.get(i);
+            for (int j = i + 1; j < players.size(); ++j) {
+                Player secondPlayer = players.get(j);
+                if (firstPlayer.getXPos() == secondPlayer.getXPos()
+                && firstPlayer.getYPos() == secondPlayer.getYPos()) {
+                    secondPlayer.isAttackedBy(firstPlayer);
+                    firstPlayer.isAttackedBy(secondPlayer);
+                }
+            }
+        }
     }
 }
