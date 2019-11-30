@@ -2,8 +2,9 @@ package player;
 
 public final class Rogue extends Player {
     Rogue() {
-        System.out.println("Rogue created!");
-        this.type = "R";
+        super();
+        this.setType("R");
+        this.setFavorableTerrain("W");
     }
     @Override
     public void isAttackedBy(Player player) {

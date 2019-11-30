@@ -17,7 +17,7 @@ public final class Cell {
         this.type = type;
     }
 
-    String getType() {
+    public String getType() {
         return type;
     }
 

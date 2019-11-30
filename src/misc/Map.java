@@ -65,6 +65,6 @@ public final class Map {
     }
 
     public Cell getCell(int xPos, int yPos) {
-        return null;
+        return cellMap.get(xPos).get(yPos);
     }
 }

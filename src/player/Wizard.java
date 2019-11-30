@@ -2,8 +2,9 @@ package player;
 
 public final class Wizard extends Player {
     Wizard() {
-        System.out.println("Wizard created!");
-        this.type = "W";
+        super();
+        this.setType("W");
+        this.setFavorableTerrain("D");
     }
     @Override
     public void isAttackedBy(Player player) {

@@ -2,8 +2,9 @@ package player;
 
 public final class Pyromancer extends Player {
     Pyromancer() {
-        System.out.println("Pyromancer created!");
-        this.type = "P";
+        super();
+        this.setType("P");
+        this.setFavorableTerrain("V");
     }
     @Override
     public void isAttackedBy(Player player) {
