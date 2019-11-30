@@ -1,21 +1,19 @@
 package main;
 
-import fileio.FileSystem;
-
-
-import java.io.IOException;
-
 public final class Main {
     private Main() {
-
+        //
     }
-    public static void main(String[] args) throws IOException {
-        System.out.println("MERGE GITU BAA");
-        FileSystem io = new FileSystem("/home/alex/Videos/Tema2POO/mata.txt",
+    public static void main(String[] args) {
+        GameInputLoader gameInputLoader = new GameInputLoader("/home/alex/Videos/Tema2POO/mata.txt",
                 "/home/alex/Videos/Tema2POO/mata2.txt");
-        int x = io.nextInt();
-        System.out.println(x);
-        io.writeInt(x);
-        io.close();
+        GameInput gameInput = gameInputLoader.load();
+        Game.getInstance().setGameInput(gameInput);
+        Game.getInstance().init();
+        for (int i = 0; i < Game.getInstance().getRounds(); ++i) {
+            for (int j = 0; j < Game.getInstance().getPlayers().size(); ++j) {
+                System.out.println(Game.getInstance().getPlayers().get(j));
+            }
+        }
     }
 }
