@@ -1,5 +1,7 @@
 package misc;
 
-public class Constants {
-    //
+public final class Constants {
+    private Constants() {
+        //
+    }
 }

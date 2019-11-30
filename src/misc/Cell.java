@@ -2,31 +2,42 @@ package misc;
 // This class implements a Map cell
 
 public final class Cell {
-    private char type;
+    private String type;
     private int xPos;
     private int yPos;
 
-    public char getType() {
-        return type;
+    Cell(final int xPos, final int yPos) {
+        this.xPos = xPos;
+        this.yPos = yPos;
     }
 
-    public void setType(char type) {
+    public Cell(final int xPos, final int yPos, final String type) {
+        this.xPos = xPos;
+        this.yPos = yPos;
         this.type = type;
     }
 
-    public int getxPos() {
+    String getType() {
+        return type;
+    }
+
+    void setType(final String type) {
+        this.type = type;
+    }
+
+    public int getXPos() {
         return xPos;
     }
 
-    public void setxPos(int xPos) {
-        this.xPos = xPos;
+    public void setXPos(int xPosVal) {
+        this.xPos = xPosVal;
     }
 
-    public int getyPos() {
+    public int getYPos() {
         return yPos;
     }
 
-    public void setyPos(int yPos) {
-        this.yPos = yPos;
+    public void setYPos(int yPosVal) {
+        this.yPos = yPosVal;
     }
 }
