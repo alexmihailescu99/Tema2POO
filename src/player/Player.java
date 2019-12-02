@@ -1,6 +1,8 @@
 package player;
 
 import abilities.Ability;
+import misc.Cell;
+import misc.Map;
 
 import java.util.ArrayList;
 
@@ -22,6 +24,7 @@ public abstract class Player {
     protected boolean isDead;
     protected Ability currOverTimeAbility;
     protected int overTimeAbilityRemainingRounds;
+    protected Cell cellPosition;
     // LEVEL 0, EXP 0, EMPTY MODIFIERS ARRAY, NO DAMAGE OVER TIME
     Player() {
         this.level = 0;
@@ -53,6 +56,8 @@ public abstract class Player {
         if (this.exp > 250 + this.level * 50) {
             this.levelUp();
             this.checkLevel();
+        } else {
+            return;
         }
         this.exp = 0;
     }
@@ -64,13 +69,17 @@ public abstract class Player {
                 this.currOverTimeAbility.removeOverTimeEffects();
             }
         }
+        this.dmg = 0;
     }
 
     protected abstract void levelUp();
 
     @Override
     public final String toString() {
-        return this.exp + " " + this.id + " " + this.type + " " + this.xPos + " " + this.yPos;
+        return this.type + " " + this.xPos + " " + this.yPos;
+    }
+    public final Cell getCellPosition() {
+        return Map.getInstance().getCell(this.xPos, this.yPos);
     }
     public final void setId(int idVal) {
         this.id = idVal;

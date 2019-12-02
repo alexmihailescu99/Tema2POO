@@ -92,11 +92,21 @@ public final class Knight extends Player {
         }
         this.execute.addModifier(WIZZ_EXECUTE_DMG_MODIFIER);
         int dmg1 = this.execute.use(wizard);
+        int prevExp = this.getExp();
+        boolean wasAlreadyDead = false;
+        if (wizard.getHp() <= 0) {
+            wasAlreadyDead = true;
+        }
         if (playerCell.getType().equals(this.getFavorableTerrain())) {
             this.slam.addModifier(Constants.KNIGHT_LAND_MODIFIER);
         }
         this.slam.addModifier(WIZZ_SLAM_DMG_MODIFIER);
         int dmg2 = this.slam.use(wizard);
+        if (wasAlreadyDead) {
+            this.setExp(prevExp);
+        }
+        this.dmg = dmg1 + dmg2;
+        System.out.println("I AM ADDING " + dmg1 + " and " + dmg2);
         this.modifiers.clear();
     }
 }

@@ -33,6 +33,8 @@ public abstract class Ability {
 
     protected final void clearAttributes() {
         this.modifiers.clear();
+        this.baseDamage = 0;
+        this.finalDamage = 0;
     }
 
     public final Player getOvertimePlayer() {

@@ -15,6 +15,9 @@ public final class Wizard extends Player {
     private static final float PYRO_DEFLECT_MODIFIER = 1.3f;
     private static final float KNIGHT_DRAIN_MODIFIER = 1.2f;
     private static final float KNIGHT_DEFLECT_MODIFIER = 1.4f;
+    private static final float ROGUE_DRAIN_MODIFIER = 0.8f;
+    private static final float ROGUE_DEFLECT_MODIFIER = 1.2f;
+    private static final float WIZARD_DRAIN_MODIFIER = 1.05f;
     Wizard() {
         super();
         this.setType("W");
@@ -66,14 +69,30 @@ public final class Wizard extends Player {
         }
         this.deflect.addModifier(PYRO_DEFLECT_MODIFIER);
         this.deflect.use(pyromancer);
-        this.modifiers.clear();
     }
     @Override
     public void attacks(Rogue rogue) {
-
+        System.out.println(this + " attacks " + rogue);
+        Cell playerCell = Map.getInstance().getCell(this.getXPos(), this.getYPos());
+        if (playerCell.getType().equals(this.getFavorableTerrain())) {
+            this.drain.addModifier(Constants.WIZARD_DESERT_MODIFIER);
+        }
+        this.drain.addModifier(ROGUE_DRAIN_MODIFIER);
+        this.drain.use(rogue);
+        if (playerCell.getType().equals(this.getFavorableTerrain())) {
+            this.deflect.addModifier(Constants.WIZARD_DESERT_MODIFIER);
+        }
+        this.deflect.addModifier(ROGUE_DEFLECT_MODIFIER);
+        this.deflect.use(rogue);
     }
     @Override
     public void attacks(Wizard wizard) {
         System.out.println(this + " attacks " + wizard);
+        Cell playerCell = Map.getInstance().getCell(this.getXPos(), this.getYPos());
+        if (playerCell.getType().equals(this.getFavorableTerrain())) {
+            this.drain.addModifier(Constants.WIZARD_DESERT_MODIFIER);
+        }
+        this.drain.addModifier(WIZARD_DRAIN_MODIFIER);
+        this.drain.use(wizard);
     }
 }

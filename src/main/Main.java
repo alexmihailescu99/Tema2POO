@@ -12,10 +12,10 @@ public final class Main {
         GameInput gameInput = gameInputLoader.load();
         Game.getInstance().setGameInput(gameInput);
         Game.getInstance().init();
-        for (Player player : Game.getInstance().getPlayers()) {
-            player.setExp(401);
-            player.update();
-        }
+//        for (Player player : Game.getInstance().getPlayers()) {
+//            player.setExp(401);
+//            player.update();
+//        }
         for (int i = 0; i < Game.getInstance().getRounds(); ++i) {
             for (int j = 0; j < Game.getInstance().getPlayers().size(); ++j) {
                 Player currPlayer = Game.getInstance().getPlayers().get(j);
@@ -42,9 +42,7 @@ public final class Main {
             Game.getInstance().finaliseRound();
             Game.getInstance().printStandings();
         }
-        for (Player player : Game.getInstance().getPlayers()) {
-            System.out.println(player);
-        }
+        Game.getInstance().printStandings();
         //Game.getInstance().printStandings();
     }
 }

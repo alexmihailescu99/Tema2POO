@@ -47,8 +47,12 @@ final class GameInputLoader {
                 playerInfo.add(playerTotalInfo);
             }
             rounds = fs.nextInt();
-            for (int i = 0; i < noPlayers * rounds; ++i) {
-                playerCommands.add(fs.nextWord());
+            for (int i = 0; i < rounds; ++i) {
+                String cmd = fs.nextWord();
+                String[] splitted = cmd.split("", 0);
+                for (int j = 0; j < noPlayers; ++j) {
+                    playerCommands.add(splitted[j]);
+                }
             }
             fs.close();
         } catch (Exception e1) {

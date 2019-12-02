@@ -77,16 +77,18 @@ final class Game {
                 if (firstPlayer.getXPos() == secondPlayer.getXPos()
                 && firstPlayer.getYPos() == secondPlayer.getYPos()
                 && firstPlayer.getHp() > 0 && secondPlayer.getHp() > 0) {
-                    // Make sure the wizard always attacks first
+                    // Make sure the wizard always attacks second
                     // So he has damage to deflect
-                    if (secondPlayer instanceof Wizard
-                    && !(firstPlayer instanceof Wizard)) {
+                    if (firstPlayer instanceof Wizard
+                    && !(secondPlayer instanceof Wizard)) {
                         Player temp = secondPlayer;
                         secondPlayer = firstPlayer;
                         firstPlayer = temp;
                     }
                     secondPlayer.isAttackedBy(firstPlayer);
                     firstPlayer.isAttackedBy(secondPlayer);
+                    System.out.println(secondPlayer.getDmg());
+                    System.out.println(firstPlayer.getDmg());
                 }
             }
         }
