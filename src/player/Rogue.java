@@ -7,7 +7,7 @@ public final class Rogue extends Player {
         this.setFavorableTerrain("W");
     }
     @Override
-    public  void update() {
+    public void levelUp() {
         //
     }
     @Override

@@ -1,5 +1,6 @@
 package abilities;
 
+import player.Player;
 import player.Knight;
 import player.Pyromancer;
 import player.Rogue;
@@ -14,15 +15,42 @@ public abstract class Ability {
     protected int damageOverTime;
     protected int finalDamage;
     protected ArrayList<Float> modifiers;
+    protected Player castee;
+    protected Player overtimePlayer;
     Ability() {
         this.setSnares(false);
         this.setHasDamageOverTime(false);
         this.modifiers = new ArrayList<>();
+        this.castee = null;
+        this.overtimePlayer = null;
     }
-    public abstract void use(Knight knight);
-    public abstract void use(Pyromancer pyromancer);
-    public abstract void use(Rogue rogue);
-    public abstract void use(Wizard wizard);
+    public abstract int use(Knight knight);
+    public abstract int use(Pyromancer pyromancer);
+    public abstract int use(Rogue rogue);
+    public abstract int use(Wizard wizard);
+    public abstract void applyOverTimeEffects();
+    public abstract void removeOverTimeEffects();
+
+    protected final void clearAttributes() {
+        this.modifiers.clear();
+    }
+
+    public final Player getOvertimePlayer() {
+        return this.overtimePlayer;
+    }
+
+    public final void setOvertimePlayer(Player playerRef) {
+        this.overtimePlayer = playerRef;
+    }
+
+    public final Player getCastee() {
+        return this.castee;
+    }
+
+    public final void setCastee(Player casteeRef) {
+        this.castee = casteeRef;
+    }
+
     public final int getBaseDamage() {
         return this.baseDamage;
     }

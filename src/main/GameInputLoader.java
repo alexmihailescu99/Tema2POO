@@ -47,7 +47,7 @@ final class GameInputLoader {
                 playerInfo.add(playerTotalInfo);
             }
             rounds = fs.nextInt();
-            for (int i = 0; i < noPlayers; ++i) {
+            for (int i = 0; i < noPlayers * rounds; ++i) {
                 playerCommands.add(fs.nextWord());
             }
             fs.close();

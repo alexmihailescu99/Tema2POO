@@ -1,8 +1,11 @@
 package player;
 
+import abilities.Ability;
+
 import java.util.ArrayList;
 
 public abstract class Player {
+    protected int id;
     protected int hp;
     protected int maxHp;
     protected int dmg;
@@ -17,6 +20,8 @@ public abstract class Player {
     protected String favorableTerrain;
     protected ArrayList<Float> modifiers;
     protected boolean isDead;
+    protected Ability currOverTimeAbility;
+    protected int overTimeAbilityRemainingRounds;
     // LEVEL 0, EXP 0, EMPTY MODIFIERS ARRAY, NO DAMAGE OVER TIME
     Player() {
         this.level = 0;
@@ -44,11 +49,35 @@ public abstract class Player {
             default: System.out.println("Illegal move!");
         }
     }
-    @Override
-    public final String toString() {
-        return this.type + " " + this.xPos + " " + this.yPos;
+    public final void checkLevel() {
+        if (this.exp > 250 + this.level * 50) {
+            this.levelUp();
+            this.checkLevel();
+        }
+        this.exp = 0;
     }
 
+    public final void update() {
+        checkLevel();
+        if (this.currOverTimeAbility != null) {
+            if (this.getOverTimeAbilityRemainingRounds() == 0) {
+                this.currOverTimeAbility.removeOverTimeEffects();
+            }
+        }
+    }
+
+    protected abstract void levelUp();
+
+    @Override
+    public final String toString() {
+        return this.exp + " " + this.id + " " + this.type + " " + this.xPos + " " + this.yPos;
+    }
+    public final void setId(int idVal) {
+        this.id = idVal;
+    }
+    public final int getId() {
+        return this.id;
+    }
     public final void setHp(int hpVal) {
         this.hp = hpVal;
     }
@@ -112,9 +141,6 @@ public abstract class Player {
     public final ArrayList<Float> getModifiers() {
         return this.modifiers;
     }
-    public final void addModifier(float modifier) {
-        this.modifiers.add(modifier);
-    }
     public final boolean doesSufferDamageOverTime() {
         return this.suffersDamageOverTime;
     }
@@ -133,10 +159,21 @@ public abstract class Player {
     public final String getFavorableTerrain() {
         return this.favorableTerrain;
     }
+    public final void setCurrOverTimeAbility(Ability ability) {
+        this.currOverTimeAbility = ability;
+    }
+    public final Ability getCurrOverTimeAbility() {
+        return this.currOverTimeAbility;
+    }
+    public final int getOverTimeAbilityRemainingRounds() {
+        return this.overTimeAbilityRemainingRounds;
+    }
+    public final void setOverTimeAbilityRemainingRounds(int noRounds) {
+        this.overTimeAbilityRemainingRounds = noRounds;
+    }
     public abstract void isAttackedBy(Player player);
     public abstract void attacks(Knight knight);
     public abstract void attacks(Pyromancer pyromancer);
     public abstract void attacks(Rogue rogue);
     public abstract void attacks(Wizard wizard);
-    public abstract void update();
 }

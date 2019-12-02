@@ -7,7 +7,7 @@ public final class Pyromancer extends Player {
         this.setFavorableTerrain("V");
     }
     @Override
-    public  void update() {
+    public void levelUp() {
         //
     }
     @Override
