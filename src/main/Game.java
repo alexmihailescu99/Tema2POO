@@ -51,7 +51,7 @@ final class Game {
         playerCommands = gameInput.getPlayerCommands();
     }
 
-    void setGameInput(GameInput gameInputVal) {
+    void setGameInput(final GameInput gameInputVal) {
         gameInput = gameInputVal;
     }
     static Game getInstance() {
@@ -75,8 +75,8 @@ final class Game {
             for (int j = i + 1; j < players.size(); ++j) {
                 Player secondPlayer = players.get(j);
                 if (firstPlayer.getXPos() == secondPlayer.getXPos()
-                && firstPlayer.getYPos() == secondPlayer.getYPos()
-                && firstPlayer.getHp() > 0 && secondPlayer.getHp() > 0) {
+                        && firstPlayer.getYPos() == secondPlayer.getYPos()
+                        && firstPlayer.getHp() > 0 && secondPlayer.getHp() > 0) {
                     // Make sure the wizard always attacks second
                     // So he has damage to deflect
                     if (firstPlayer instanceof Wizard) {
@@ -86,8 +86,6 @@ final class Game {
                     }
                     secondPlayer.isAttackedBy(firstPlayer);
                     firstPlayer.isAttackedBy(secondPlayer);
-                    //System.out.println(secondPlayer.getDmg());
-                    //System.out.println(firstPlayer.getDmg());
                 }
             }
         }
@@ -99,10 +97,15 @@ final class Game {
             if (player.getCurrOverTimeAbility() != null) {
                 // Apply it
                 player.getCurrOverTimeAbility().applyOverTimeEffects();
+                player.setOverTimeAbilityRemainingRounds(
+                        player.getOverTimeAbilityRemainingRounds() - 1);
+                if (player.getOverTimeAbilityRemainingRounds() < 0) {
+                    player.setOverTimeAbilityRemainingRounds(0);
+                }
             }
         }
     }
-    void kill(Player player) {
+    void kill(final Player player) {
         player.setXPos(-1);
         player.setYPos(-1);
         player.setExp(0);
@@ -122,11 +125,6 @@ final class Game {
         for (Player player : players) {
             if (!player.getIsDead()) {
                 // Substract from the remaining overtime effect rounds
-                player.setOverTimeAbilityRemainingRounds(
-                        player.getOverTimeAbilityRemainingRounds() - 1);
-                if (player.getOverTimeAbilityRemainingRounds() < 0) {
-                    player.setOverTimeAbilityRemainingRounds(0);
-                }
                 // Update max hp if necessary
                 // Remove overtime effect if necessary
                 player.update();
@@ -134,15 +132,22 @@ final class Game {
         }
     }
 
-    void printStandings() {
-        for (Player player : players) {
+    String printStandings() {
+        String whatToWrite = "";
+        for (int i = 0; i < players.size(); ++i) {
+            Player player = players.get(i);
             if (!player.getIsDead()) {
-                System.out.println(player.getType() + " " + player.getLevel()
-                + " " + player.getExp() + " " + player.getHp() + " "
+                whatToWrite += (player.getType() + " " + player.getLevel()
+                        + " " + player.getExp() + " " + player.getHp() + " "
                         + player.getXPos() + " " + player.getYPos());
             } else {
-                System.out.println(player.getType() + " dead");
+                whatToWrite += (player.getType() + " dead");
+            }
+            if (i != players.size() - 1) {
+                whatToWrite += System.lineSeparator();
             }
         }
+        return whatToWrite;
     }
+
 }

@@ -36,7 +36,7 @@ public abstract class Player {
         this.canMove = true;
         this.isDead = false;
     }
-    public final void move(String direction) {
+    public final void move(final String direction) {
         char dir = direction.charAt(0);
         switch (dir) {
             case 'U':
@@ -51,12 +51,12 @@ public abstract class Player {
             case 'R':
                 this.yPos++;
                 break;
-            default: System.out.println("Illegal move!");
+            default:
+                break;
         }
     }
     public final void checkLevel() {
         if (this.exp >= TWO_HUNDRED_FIFTY + this.level * FIFTY) {
-            System.out.println(this + " has " + this.exp + " exp");
             this.levelUp();
             this.checkLevel();
         } else {
@@ -84,13 +84,13 @@ public abstract class Player {
     public final Cell getCellPosition() {
         return Map.getInstance().getCell(this.xPos, this.yPos);
     }
-    public final void setId(int idVal) {
+    public final void setId(final int idVal) {
         this.id = idVal;
     }
     public final int getId() {
         return this.id;
     }
-    public final void setHp(int hpVal) {
+    public final void setHp(final int hpVal) {
         this.hp = hpVal;
     }
     public final int getHp() {
@@ -99,28 +99,28 @@ public abstract class Player {
     public final int getMaxHp() {
         return this.maxHp;
     }
-    public final void setMaxHp(int maxHpVal) {
+    public final void setMaxHp(final int maxHpVal) {
         this.maxHp = maxHpVal;
     }
     public final boolean getIsDead() {
         return isDead;
     }
-    public final void setDead(boolean dead) {
+    public final void setDead(final boolean dead) {
         isDead = dead;
     }
-    public final void setDmg(int dmgVal) {
+    public final void setDmg(final int dmgVal) {
         this.dmg = dmgVal;
     }
     public final int getDmg() {
         return this.dmg;
     }
-    public final void setXPos(int xPosVal) {
+    public final void setXPos(final int xPosVal) {
         this.xPos = xPosVal;
     }
     public final int getXPos() {
         return this.xPos;
     }
-    public final void setYPos(int yPosVal) {
+    public final void setYPos(final int yPosVal) {
         this.yPos = yPosVal;
     }
     public final int getYPos() {
@@ -129,25 +129,25 @@ public abstract class Player {
     public final int getLevel() {
         return this.level;
     }
-    public final void setLevel(int level) {
+    public final void setLevel(final int level) {
         this.level = level;
     }
     public final int getExp() {
         return this.exp;
     }
-    public final void setExp(int exp) {
+    public final void setExp(final int exp) {
         this.exp = exp;
     }
     public final String getType() {
         return this.type;
     }
-    public final void setType(String typeVal) {
+    public final void setType(final String typeVal) {
         this.type = typeVal;
     }
     public final boolean getCanMove() {
         return this.canMove;
     }
-    public final void setCanMove(boolean moveVal) {
+    public final void setCanMove(final boolean moveVal) {
         this.canMove = moveVal;
     }
     public final ArrayList<Float> getModifiers() {
@@ -156,22 +156,22 @@ public abstract class Player {
     public final boolean doesSufferDamageOverTime() {
         return this.suffersDamageOverTime;
     }
-    public final void setSuffersDamageOverTime(boolean suffersDamageOverTimeVal) {
+    public final void setSuffersDamageOverTime(final boolean suffersDamageOverTimeVal) {
         this.suffersDamageOverTime = suffersDamageOverTimeVal;
     }
     public final float getDamageOverTime() {
         return this.damageOverTime;
     }
-    public final void setDamageOverTime(int damageOverTimeVal) {
+    public final void setDamageOverTime(final int damageOverTimeVal) {
         this.damageOverTime = damageOverTimeVal;
     }
-    public final void setFavorableTerrain(String terrain) {
+    public final void setFavorableTerrain(final String terrain) {
         this.favorableTerrain = terrain;
     }
     public final String getFavorableTerrain() {
         return this.favorableTerrain;
     }
-    public final void setCurrOverTimeAbility(Ability ability) {
+    public final void setCurrOverTimeAbility(final Ability ability) {
         this.currOverTimeAbility = ability;
     }
     public final Ability getCurrOverTimeAbility() {
@@ -180,12 +180,12 @@ public abstract class Player {
     public final int getOverTimeAbilityRemainingRounds() {
         return this.overTimeAbilityRemainingRounds;
     }
-    public final void setOverTimeAbilityRemainingRounds(int noRounds) {
+    public final void setOverTimeAbilityRemainingRounds(final int noRounds) {
         this.overTimeAbilityRemainingRounds = noRounds;
     }
-    public abstract void isAttackedBy(Player player);
-    public abstract void attacks(Knight knight);
-    public abstract void attacks(Pyromancer pyromancer);
-    public abstract void attacks(Rogue rogue);
-    public abstract void attacks(Wizard wizard);
+    public abstract void isAttackedBy(final Player player);
+    public abstract void attacks(final Knight knight);
+    public abstract void attacks(final Pyromancer pyromancer);
+    public abstract void attacks(final Rogue rogue);
+    public abstract void attacks(final Wizard wizard);
 }

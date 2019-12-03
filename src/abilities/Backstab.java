@@ -9,7 +9,7 @@ import player.Wizard;
 public class Backstab extends Ability {
     private Rogue caster;
     private static final float ROGUE_CRIT_MODIFIER = 1.5f;
-    public Backstab(Rogue caster) {
+    public Backstab(final Rogue caster) {
         this.caster = caster;
     }
     @Override
@@ -21,29 +21,19 @@ public class Backstab extends Ability {
         return;
     }
     @Override
-    public final int use(Knight knight) {
+    public final int use(final Knight knight) {
         this.castee = knight;
         this.baseDamage = 2 * Constants.HUNDRED + (Constants.FORTY  / 2) * this.caster.getLevel();
         float totalDamage = this.baseDamage;
-        //System.out.println(this.getClass().getSimpleName());
         for (Float modifier : this.modifiers) {
-            //System.out.print(modifier + " ");
-            //System.out.println();
             totalDamage *= modifier;
         }
         this.finalDamage = Math.round(totalDamage);
         this.castee.setHp(this.castee.getHp() - this.finalDamage);
         if (this.castee.getHp() <= 0) {
-            System.out.println(this.caster + " killed " + this.castee
-                    + " with " + this.getClass().getSimpleName()
-                    + " for " + this.finalDamage + " dmg");
             int gainedExp = Math.max(0, Constants.HUNDRED * 2 - (this.caster.getLevel()
                     - this.castee.getLevel()) * Constants.FORTY);
-            System.out.println(gainedExp);
             this.caster.setExp(this.caster.getExp() + gainedExp);
-        } else {
-            System.out.println(caster + " backstabbed "
-                    + this.castee + " for " + finalDamage + " dmg");
         }
         int ret;
         if (this.caster.getCellPosition().getType().equals(
@@ -56,29 +46,19 @@ public class Backstab extends Ability {
         return ret;
     }
     @Override
-    public final int use(Pyromancer pyromancer) {
+    public final int use(final Pyromancer pyromancer) {
         this.castee = pyromancer;
         this.baseDamage = 2 * Constants.HUNDRED + (Constants.FORTY  / 2) * this.caster.getLevel();
         float totalDamage = this.baseDamage;
-        //System.out.println(this.getClass().getSimpleName());
         for (Float modifier : this.modifiers) {
-            //System.out.print(modifier + " ");
-            //System.out.println();
             totalDamage *= modifier;
         }
         this.finalDamage = Math.round(totalDamage);
         this.castee.setHp(this.castee.getHp() - this.finalDamage);
         if (this.castee.getHp() <= 0) {
-            System.out.println(this.caster + " killed " + this.castee
-                    + " with " + this.getClass().getSimpleName()
-                    + " for " + this.finalDamage + " dmg");
             int gainedExp = Math.max(0, Constants.HUNDRED * 2 - (this.caster.getLevel()
                     - this.castee.getLevel()) * Constants.FORTY);
-            System.out.println(gainedExp);
             this.caster.setExp(this.caster.getExp() + gainedExp);
-        } else {
-            System.out.println(caster + " backstabbed "
-                    + this.castee + " for " + finalDamage + " dmg");
         }
         int ret;
         if (this.caster.getCellPosition().getType().equals(
@@ -91,29 +71,19 @@ public class Backstab extends Ability {
         return ret;
     }
     @Override
-    public final int use(Rogue rogue) {
+    public final int use(final Rogue rogue) {
         this.castee = rogue;
         this.baseDamage = 2 * Constants.HUNDRED + (Constants.FORTY  / 2) * this.caster.getLevel();
         float totalDamage = this.baseDamage;
-        //System.out.println(this.getClass().getSimpleName());
         for (Float modifier : this.modifiers) {
-            //System.out.print(modifier + " ");
-            //System.out.println();
             totalDamage *= modifier;
         }
         this.finalDamage = Math.round(totalDamage);
         this.castee.setHp(this.castee.getHp() - this.finalDamage);
         if (this.castee.getHp() <= 0) {
-            System.out.println(this.caster + " killed " + this.castee
-                    + " with " + this.getClass().getSimpleName()
-                    + " for " + this.finalDamage + " dmg");
             int gainedExp = Math.max(0, Constants.HUNDRED * 2 - (this.caster.getLevel()
                     - this.castee.getLevel()) * Constants.FORTY);
-            System.out.println(gainedExp);
             this.caster.setExp(this.caster.getExp() + gainedExp);
-        } else {
-            System.out.println(caster + " backstabbed "
-                    + this.castee + " for " + finalDamage + " dmg");
         }
         int ret;
         if (this.caster.hasCritical()) {
@@ -135,29 +105,19 @@ public class Backstab extends Ability {
         return ret;
     }
     @Override
-    public final int use(Wizard wizard) {
+    public final int use(final Wizard wizard) {
         this.castee = wizard;
         this.baseDamage = 2 * Constants.HUNDRED + (Constants.FORTY  / 2) * this.caster.getLevel();
         float totalDamage = this.baseDamage;
-        //System.out.println(this.getClass().getSimpleName());
         for (Float modifier : this.modifiers) {
-            //System.out.print(modifier + " ");
-            //System.out.println();
             totalDamage *= modifier;
         }
         this.finalDamage = Math.round(totalDamage);
         this.castee.setHp(this.castee.getHp() - this.finalDamage);
         if (this.castee.getHp() <= 0) {
-            System.out.println(this.caster + " killed " + this.castee
-                    + " with " + this.getClass().getSimpleName()
-                    + " for " + this.finalDamage + " dmg");
             int gainedExp = Math.max(0, Constants.HUNDRED * 2 - (this.caster.getLevel()
                     - this.castee.getLevel()) * Constants.FORTY);
-            System.out.println(gainedExp);
             this.caster.setExp(this.caster.getExp() + gainedExp);
-        } else {
-            System.out.println(caster + " backstabbed "
-                    + this.castee + " for " + finalDamage + " dmg");
         }
         int ret;
         if (this.caster.hasCritical()) {

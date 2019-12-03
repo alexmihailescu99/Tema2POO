@@ -1,5 +1,6 @@
 package main;
 
+import java.io.FileWriter;
 import java.util.ArrayList;
 import fileio.FileSystem;
 
@@ -12,7 +13,7 @@ final class GameInputLoader {
         this.outputPath = outputPath;
     }
 
-     GameInput load() {
+    GameInput load() {
         int xMapSize = 0;
         int yMapSize = 0;
         int rounds = 0;
@@ -40,7 +41,6 @@ final class GameInputLoader {
                 }
             }
             noPlayers = fs.nextInt();
-            System.out.println(noPlayers);
             for (int i = 0; i < noPlayers; ++i) {
                 String playerRace = fs.nextWord();
                 String playerXPos = fs.nextWord();
@@ -63,5 +63,15 @@ final class GameInputLoader {
         }
         return new GameInput(xMapSize, yMapSize, cellTypes,
                 noPlayers, playerInfo, rounds, playerCommands);
+    }
+
+    public void write(final String str) {
+        try {
+            FileWriter out = new FileWriter(outputPath);
+            out.write(str);
+            out.close();
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
     }
 }

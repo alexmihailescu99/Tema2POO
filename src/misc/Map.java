@@ -31,7 +31,7 @@ public final class Map {
         return instance;
     }
 
-    public void setCellTypes(ArrayList<ArrayList<String>> cellTypes) {
+    public void setCellTypes(final ArrayList<ArrayList<String>> cellTypes) {
         for (int i = 0; i < xSize; ++i) {
             for (int j = 0; j < ySize; ++j) {
                 cellMap.get(i).get(j).setType(cellTypes.get(i).get(j));
@@ -52,7 +52,7 @@ public final class Map {
         return xSize;
     }
 
-    public void setXSize(int xSizeVal) {
+    public void setXSize(final int xSizeVal) {
         xSize = xSizeVal;
     }
 
@@ -60,11 +60,11 @@ public final class Map {
         return ySize;
     }
 
-    public void setYSize(int ySizeVal) {
+    public void setYSize(final int ySizeVal) {
         ySize = ySizeVal;
     }
 
-    public Cell getCell(int xPos, int yPos) {
+    public Cell getCell(final int xPos, final int yPos) {
         return cellMap.get(xPos).get(yPos);
     }
 }

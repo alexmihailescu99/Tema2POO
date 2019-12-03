@@ -31,7 +31,7 @@ public final class GameInput {
         return xMapSize;
     }
 
-    public void setXMapSize(int xMapSizeVal) {
+    public void setXMapSize(final int xMapSizeVal) {
         this.xMapSize = xMapSizeVal;
     }
 
@@ -39,11 +39,11 @@ public final class GameInput {
         return yMapSize;
     }
 
-    public void setYMapSize(int yMapSizeVal) {
+    public void setYMapSize(final int yMapSizeVal) {
         this.yMapSize = yMapSizeVal;
     }
 
-    public void setRounds(int rounds) {
+    public void setRounds(final int rounds) {
         this.rounds = rounds;
     }
 
@@ -51,7 +51,7 @@ public final class GameInput {
         return noPlayers;
     }
 
-    public void setNoPlayers(int noPlayers) {
+    public void setNoPlayers(final int noPlayers) {
         this.noPlayers = noPlayers;
     }
 
@@ -59,7 +59,7 @@ public final class GameInput {
         return cellTypes;
     }
 
-    public void setCellTypes(ArrayList<ArrayList<String>> cellTypes) {
+    public void setCellTypes(final ArrayList<ArrayList<String>> cellTypes) {
         this.cellTypes = cellTypes;
     }
 
@@ -67,7 +67,7 @@ public final class GameInput {
         return playerInfo;
     }
 
-    public void setPlayerInfo(ArrayList<String> playerInfo) {
+    public void setPlayerInfo(final ArrayList<String> playerInfo) {
         this.playerInfo = playerInfo;
     }
 
@@ -75,7 +75,7 @@ public final class GameInput {
         return playerCommands;
     }
 
-    public void setPlayerCommands(ArrayList<String> playerCommands) {
+    public void setPlayerCommands(final ArrayList<String> playerCommands) {
         this.playerCommands = playerCommands;
     }
     int getRounds() {

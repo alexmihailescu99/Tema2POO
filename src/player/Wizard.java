@@ -30,69 +30,98 @@ public final class Wizard extends Player {
     @Override
     public void levelUp() {
         this.level++;
-        System.out.println(this + " has advanced to level " + this.level);
         this.maxHp = this.HP + this.getLevel() * HP_LEVEL_UP_MODIFIER;
         this.hp = this.maxHp;
-        System.out.println(this + " has regenerated their hp to " + this.maxHp);
     }
     @Override
-    public void isAttackedBy(Player player) {
+    public void isAttackedBy(final Player player) {
         player.attacks(this);
     }
     @Override
-    public void attacks(Knight knight) {
-        System.out.println(this + " attacks " + knight);
+    public void attacks(final Knight knight) {
         Cell playerCell = Map.getInstance().getCell(this.getXPos(), this.getYPos());
         if (playerCell.getType().equals(this.getFavorableTerrain())) {
             this.drain.addModifier(Constants.WIZARD_DESERT_MODIFIER);
         }
         this.drain.addModifier(KNIGHT_DRAIN_MODIFIER);
         this.drain.use(knight);
+        boolean wasAlreadyDead = false;
+        int prevExp = this.getExp();
+        if (knight.getHp() <= 0) {
+            wasAlreadyDead = true;
+        }
         if (playerCell.getType().equals(this.getFavorableTerrain())) {
             this.deflect.addModifier(Constants.WIZARD_DESERT_MODIFIER);
         }
         this.deflect.addModifier(KNIGHT_DEFLECT_MODIFIER);
         this.deflect.use(knight);
+        if (wasAlreadyDead) {
+            this.setExp(prevExp);
+        }
         this.modifiers.clear();
     }
     @Override
-    public void attacks(Pyromancer pyromancer) {
-        System.out.println(this + " attacks " + pyromancer);
+    public void attacks(final Pyromancer pyromancer) {
         Cell playerCell = Map.getInstance().getCell(this.getXPos(), this.getYPos());
         if (playerCell.getType().equals(this.getFavorableTerrain())) {
             this.drain.addModifier(Constants.WIZARD_DESERT_MODIFIER);
         }
         this.drain.addModifier(PYRO_DRAIN_MODIFIER);
         this.drain.use(pyromancer);
+        boolean wasAlreadyDead = false;
+        int prevExp = this.getExp();
+        if (pyromancer.getHp() <= 0) {
+            wasAlreadyDead = true;
+        }
         if (playerCell.getType().equals(this.getFavorableTerrain())) {
             this.deflect.addModifier(Constants.WIZARD_DESERT_MODIFIER);
         }
         this.deflect.addModifier(PYRO_DEFLECT_MODIFIER);
         this.deflect.use(pyromancer);
+        if (wasAlreadyDead) {
+            this.setExp(prevExp);
+        }
+        this.modifiers.clear();
     }
     @Override
-    public void attacks(Rogue rogue) {
-        System.out.println(this + " attacks " + rogue);
+    public void attacks(final Rogue rogue) {
         Cell playerCell = Map.getInstance().getCell(this.getXPos(), this.getYPos());
         if (playerCell.getType().equals(this.getFavorableTerrain())) {
             this.drain.addModifier(Constants.WIZARD_DESERT_MODIFIER);
         }
         this.drain.addModifier(ROGUE_DRAIN_MODIFIER);
         this.drain.use(rogue);
+        boolean wasAlreadyDead = false;
+        int prevExp = this.getExp();
+        if (rogue.getHp() <= 0) {
+            wasAlreadyDead = true;
+        }
         if (playerCell.getType().equals(this.getFavorableTerrain())) {
             this.deflect.addModifier(Constants.WIZARD_DESERT_MODIFIER);
         }
         this.deflect.addModifier(ROGUE_DEFLECT_MODIFIER);
         this.deflect.use(rogue);
+        if (wasAlreadyDead) {
+            this.setExp(prevExp);
+        }
+        this.modifiers.clear();
     }
     @Override
-    public void attacks(Wizard wizard) {
-        System.out.println(this + " attacks " + wizard);
+    public void attacks(final Wizard wizard) {
         Cell playerCell = Map.getInstance().getCell(this.getXPos(), this.getYPos());
         if (playerCell.getType().equals(this.getFavorableTerrain())) {
             this.drain.addModifier(Constants.WIZARD_DESERT_MODIFIER);
         }
         this.drain.addModifier(WIZARD_DRAIN_MODIFIER);
         this.drain.use(wizard);
+        boolean wasAlreadyDead = false;
+        int prevExp = this.getExp();
+        if (wizard.getHp() <= 0) {
+            wasAlreadyDead = true;
+        }
+        if (wasAlreadyDead) {
+            this.setExp(prevExp);
+        }
+        this.modifiers.clear();
     }
 }

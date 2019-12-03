@@ -27,23 +27,19 @@ public final class Knight extends Player {
     @Override
     public void levelUp() {
         this.level++;
-        System.out.println(this + " has advanced to level " + this.level);
         this.maxHp = Constants.KNIGHT_HP + this.getLevel() * LEVEL_HP_MODIFIER;
         this.hp = this.maxHp;
-        System.out.println(this + " has regenerated their hp to " + this.maxHp);
     }
     @Override
-    public void isAttackedBy(Player player) {
+    public void isAttackedBy(final Player player) {
         player.attacks(this);
     }
     @Override
-    public void attacks(Knight knight) {
-        System.out.println(this + " attacks " + knight);
+    public void attacks(final Knight knight) {
         Cell playerCell = Map.getInstance().getCell(this.getXPos(), this.getYPos());
         if (playerCell.getType().equals(this.getFavorableTerrain())) {
             this.execute.addModifier(Constants.KNIGHT_LAND_MODIFIER);
         }
-        this.execute.addModifier(ROGUE_EXECUTE_DMG_MODIFIER);
         this.execute.use(knight);
         boolean wasAlreadyDead = false;
         int prevExp = this.getExp();
@@ -54,7 +50,7 @@ public final class Knight extends Player {
             this.slam.addModifier(Constants.KNIGHT_LAND_MODIFIER);
         }
 
-        this.slam.addModifier(ROGUE_SLAM_DMG_MODIFIER);
+        this.slam.addModifier(Constants.KNIGHT_ON_KNIGHT_SLAM_MODIFIER);
         this.slam.use(knight);
         if (wasAlreadyDead) {
             this.setExp(prevExp);
@@ -62,13 +58,12 @@ public final class Knight extends Player {
         this.modifiers.clear();
     }
     @Override
-    public void attacks(Pyromancer pyromancer) {
-        System.out.println(this + " attacks " + pyromancer);
+    public void attacks(final Pyromancer pyromancer) {
         Cell playerCell = Map.getInstance().getCell(this.getXPos(), this.getYPos());
         if (playerCell.getType().equals(this.getFavorableTerrain())) {
             this.execute.addModifier(Constants.KNIGHT_LAND_MODIFIER);
         }
-        this.execute.addModifier(ROGUE_EXECUTE_DMG_MODIFIER);
+        this.execute.addModifier(PYRO_EXECUTE_DMG_MODIFIER);
         this.execute.use(pyromancer);
         boolean wasAlreadyDead = false;
         if (pyromancer.getHp() <= 0) {
@@ -78,7 +73,7 @@ public final class Knight extends Player {
             this.slam.addModifier(Constants.KNIGHT_LAND_MODIFIER);
         }
 
-        this.slam.addModifier(ROGUE_SLAM_DMG_MODIFIER);
+        this.slam.addModifier(PYRO_SLAM_DMG_MODIFIER);
         this.slam.use(pyromancer);
         int prevExp = this.getExp();
         if (wasAlreadyDead) {
@@ -87,8 +82,7 @@ public final class Knight extends Player {
         this.modifiers.clear();
     }
     @Override
-    public void attacks(Rogue rogue) {
-        System.out.println(this + " attacks " + rogue);
+    public void attacks(final Rogue rogue) {
         Cell playerCell = Map.getInstance().getCell(this.getXPos(), this.getYPos());
         if (playerCell.getType().equals(this.getFavorableTerrain())) {
             this.execute.addModifier(Constants.KNIGHT_LAND_MODIFIER);
@@ -112,14 +106,13 @@ public final class Knight extends Player {
         this.modifiers.clear();
     }
     @Override
-    public void attacks(Wizard wizard) {
-        System.out.println(this + " attacks " + wizard);
+    public void attacks(final Wizard wizard) {
         Cell playerCell = Map.getInstance().getCell(this.getXPos(), this.getYPos());
         if (playerCell.getType().equals(this.getFavorableTerrain())) {
             this.execute.addModifier(Constants.KNIGHT_LAND_MODIFIER);
         }
-        this.execute.addModifier(ROGUE_EXECUTE_DMG_MODIFIER);
-        this.execute.use(wizard);
+        this.execute.addModifier(WIZZ_EXECUTE_DMG_MODIFIER);
+        int dmg1 = this.execute.use(wizard);
         boolean wasAlreadyDead = false;
         int prevExp = this.getExp();
         if (wizard.getHp() <= 0) {
@@ -129,11 +122,12 @@ public final class Knight extends Player {
             this.slam.addModifier(Constants.KNIGHT_LAND_MODIFIER);
         }
 
-        this.slam.addModifier(ROGUE_SLAM_DMG_MODIFIER);
-        this.slam.use(wizard);
+        this.slam.addModifier(WIZZ_SLAM_DMG_MODIFIER);
+        int dmg2 = this.slam.use(wizard);
         if (wasAlreadyDead) {
             this.setExp(prevExp);
         }
+        this.dmg = dmg1 + dmg2;
         this.modifiers.clear();
     }
 }

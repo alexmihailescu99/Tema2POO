@@ -36,17 +36,15 @@ public final class Rogue extends Player {
     @Override
     public void levelUp() {
         this.level++;
-        System.out.println(this + " has advanced to level " + this.level);
         this.maxHp = Constants.ROGUE_HP + this.getLevel() * LEVEL_HP_MODIFIER;
         this.hp = this.maxHp;
-        System.out.println(this + " has regenerated their hp to " + this.maxHp);
     }
     @Override
-    public void isAttackedBy(Player player) {
+    public void isAttackedBy(final Player player) {
         player.attacks(this);
     }
     @Override
-    public void attacks(Knight knight) {
+    public void attacks(final Knight knight) {
         if (this.getBackstabCounter() == 0) {
             if (this.getCellPosition().getType().equals(
                     this.getFavorableTerrain())) {
@@ -54,10 +52,9 @@ public final class Rogue extends Player {
             }
             this.backstabCounter = 1;
         }
-        System.out.println(this + " attacks " + knight);
         if (this.getBackstabCounter() == BACKSTAB_CRITICAL_MAX_COUNT) {
             if (this.getCellPosition().getType().equals(
-                this.getFavorableTerrain())) {
+                    this.getFavorableTerrain())) {
                 this.backstab.addModifier(BACKSTAB_CRITICAL_MODIFIER);
             }
             this.setBackstabCounter(1);
@@ -77,7 +74,7 @@ public final class Rogue extends Player {
         this.modifiers.clear();
     }
     @Override
-    public void attacks(Pyromancer pyromancer) {
+    public void attacks(final Pyromancer pyromancer) {
         if (this.getBackstabCounter() == 0) {
             if (this.getCellPosition().getType().equals(
                     this.getFavorableTerrain())) {
@@ -85,7 +82,6 @@ public final class Rogue extends Player {
             }
             this.backstabCounter = 1;
         }
-        System.out.println(this + " attacks " + pyromancer);
         if (this.getBackstabCounter() == BACKSTAB_CRITICAL_MAX_COUNT) {
             if (this.getCellPosition().getType().equals(
                     this.getFavorableTerrain())) {
@@ -108,7 +104,7 @@ public final class Rogue extends Player {
         this.modifiers.clear();
     }
     @Override
-    public void attacks(Rogue rogue) {
+    public void attacks(final Rogue rogue) {
         if (this.getBackstabCounter() == 0) {
             if (this.getCellPosition().getType().equals(
                     this.getFavorableTerrain())) {
@@ -116,7 +112,6 @@ public final class Rogue extends Player {
             }
             this.backstabCounter = 1;
         }
-        System.out.println(this + " attacks " + rogue);
         if (this.getBackstabCounter() == BACKSTAB_CRITICAL_MAX_COUNT) {
             if (this.getCellPosition().getType().equals(
                     this.getFavorableTerrain())) {
@@ -139,7 +134,7 @@ public final class Rogue extends Player {
         this.modifiers.clear();
     }
     @Override
-    public void attacks(Wizard wizard) {
+    public void attacks(final Wizard wizard) {
         if (this.getBackstabCounter() == 0) {
             if (this.getCellPosition().getType().equals(
                     this.getFavorableTerrain())) {
@@ -148,7 +143,6 @@ public final class Rogue extends Player {
             }
             this.backstabCounter = 1;
         }
-        System.out.println(this + " attacks " + wizard);
         if (this.getBackstabCounter() == BACKSTAB_CRITICAL_MAX_COUNT) {
             if (this.getCellPosition().getType().equals(
                     this.getFavorableTerrain())) {
@@ -178,21 +172,19 @@ public final class Rogue extends Player {
             this.setExp(prevExp);
         }
         this.dmg = dmg1 + dmg2;
-        System.out.println(" I am adding " + dmg1 + " " + dmg2);
-        System.out.println(this + " "  + this.dmg  + " dmg without modifiers");
         this.criticalHit = false;
         this.modifiers.clear();
     }
     public int getBackstabCounter() {
         return this.backstabCounter;
     }
-    public void setBackstabCounter(int backstabCounterVal) {
+    public void setBackstabCounter(final int backstabCounterVal) {
         this.backstabCounter = backstabCounterVal;
     }
     public boolean hasCritical() {
         return this.criticalHit;
     }
-    public void setCritical(boolean crit) {
+    public void setCritical(final boolean crit) {
         this.criticalHit = crit;
     }
 }

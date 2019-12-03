@@ -6,9 +6,8 @@ public final class Main {
     private Main() {
         //
     }
-    public static void main(String[] args) {
-        GameInputLoader gameInputLoader = new GameInputLoader("/home/alex/Videos/Tema2POO/mata.txt",
-                "/home/alex/Videos/Tema2POO/mata2.txt");
+    public static void main(String[] args) throws java.io.IOException {
+        GameInputLoader gameInputLoader = new GameInputLoader(args[0], args[1]);
         GameInput gameInput = gameInputLoader.load();
         Game.getInstance().setGameInput(gameInput);
         Game.getInstance().init();
@@ -17,33 +16,26 @@ public final class Main {
 //            player.update();
 //        }
         for (int i = 0; i < Game.getInstance().getRounds(); ++i) {
-            System.out.println("Round " + i);
             for (int j = 0; j < Game.getInstance().getPlayers().size(); ++j) {
                 Player currPlayer = Game.getInstance().getPlayers().get(j);
                 String currCommand = Game.getInstance().getPlayerCommands().get(0);
                 Game.getInstance().getPlayerCommands().remove(currCommand);
                 if (currPlayer.getHp() <= 0) {
-                    System.out.println("Can not move " + currPlayer + " " + currCommand
-                    + " since he is dead");
                     continue;
                 }
                 if (currPlayer.getCanMove()) {
                     currPlayer.move(currCommand);
-                    System.out.println("Moved " + currPlayer + " " + currCommand);
-                } else {
-                    System.out.println(currPlayer + " can not move!");
                 }
             }
             // Check overtime abilities
             Game.getInstance().checkOverTimeAbilities();
             // Check if anyone has died from overtime abilities
             Game.getInstance().checkDead();
-            Game.getInstance().printStandings();
             Game.getInstance().checkPositions();
             Game.getInstance().finaliseRound();
-            Game.getInstance().printStandings();
         }
-        Game.getInstance().printStandings();
+        System.out.print(Game.getInstance().printStandings());
+        gameInputLoader.write(Game.getInstance().printStandings());
         //Game.getInstance().printStandings();
     }
 }

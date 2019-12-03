@@ -15,7 +15,7 @@ public class Execute extends Ability {
     private static final int EXECUTE_ENEMY_LEVEL_LIMIT = 40;
     private static final float EXECUTE_ENEMY_LIMIT_MODIFIER = 0.4f;
 
-    public Execute(Knight caster) {
+    public Execute(final Knight caster) {
         super();
         this.caster = caster;
     }
@@ -29,7 +29,7 @@ public class Execute extends Ability {
         return;
     }
     @Override
-    public final int use(Knight knight) {
+    public final int use(final Knight knight) {
         this.castee = knight;
         float hpLimit;
         this.baseDamage = KNIGHT_EXECUTE_BASE_DAMAGE
@@ -44,11 +44,8 @@ public class Execute extends Ability {
         if (this.castee.getHp() < hpLimit) {
             this.finalDamage = Math.round(hpLimit);
             this.castee.setHp(this.castee.getHp() - this.finalDamage);
-            System.out.println(caster + " executed " + this.castee + " for "
-                    + this.finalDamage + " dmg");
             int gainedExp = Math.max(0, 2 * Constants.HUNDRED - (this.caster.getLevel()
                     - this.castee.getLevel()) * Constants.FORTY);
-            System.out.println(gainedExp);
             this.caster.setExp(this.caster.getExp() + gainedExp);
             if (this.caster.getCellPosition().getType().equals(
                     this.caster.getFavorableTerrain())) {
@@ -58,24 +55,15 @@ public class Execute extends Ability {
             }
         }
         float totalDamage = this.baseDamage;
-        //System.out.println(this.getClass().getSimpleName());
         for (Float modifier : this.modifiers) {
-            //System.out.print(modifier + " ");
-            //System.out.println();
             totalDamage *= modifier;
         }
         this.finalDamage = Math.round(totalDamage);
         this.castee.setHp(this.castee.getHp() - this.finalDamage);
         if (this.castee.getHp() <= 0) {
-            System.out.println(this.caster + " killed " + this.castee
-                    + " with " + this.getClass().getSimpleName());
             int gainedExp = Math.max(0, 2 * Constants.HUNDRED - (this.caster.getLevel()
                     - this.castee.getLevel()) * Constants.FORTY);
-            System.out.println(gainedExp);
             this.caster.setExp(this.caster.getExp() + gainedExp);
-        } else {
-            System.out.println(caster + " hit " + this.castee
-                    + " with execute for " + finalDamage + " dmg");
         }
         int ret;
         if (this.caster.getCellPosition().getType().equals(
@@ -88,7 +76,7 @@ public class Execute extends Ability {
         return ret;
     }
     @Override
-    public final int use(Pyromancer pyromancer) {
+    public final int use(final Pyromancer pyromancer) {
         this.castee = pyromancer;
         float hpLimit;
         this.baseDamage = KNIGHT_EXECUTE_BASE_DAMAGE
@@ -103,11 +91,8 @@ public class Execute extends Ability {
         if (this.castee.getHp() < hpLimit) {
             this.finalDamage = Math.round(hpLimit);
             this.castee.setHp(this.castee.getHp() - this.finalDamage);
-            System.out.println(caster + " executed " + this.castee + " for "
-                    + this.finalDamage + " dmg");
             int gainedExp = Math.max(0, 2 * Constants.HUNDRED - (this.caster.getLevel()
                     - this.castee.getLevel()) * Constants.FORTY);
-            System.out.println(gainedExp);
             this.caster.setExp(this.caster.getExp() + gainedExp);
             if (this.caster.getCellPosition().getType().equals(
                     this.caster.getFavorableTerrain())) {
@@ -117,24 +102,15 @@ public class Execute extends Ability {
             }
         }
         float totalDamage = this.baseDamage;
-        //System.out.println(this.getClass().getSimpleName());
         for (Float modifier : this.modifiers) {
-            //System.out.print(modifier + " ");
-            //System.out.println();
             totalDamage *= modifier;
         }
         this.finalDamage = Math.round(totalDamage);
         this.castee.setHp(this.castee.getHp() - this.finalDamage);
         if (this.castee.getHp() <= 0) {
-            System.out.println(this.caster + " killed " + this.castee
-                    + " with " + this.getClass().getSimpleName());
             int gainedExp = Math.max(0, 2 * Constants.HUNDRED - (this.caster.getLevel()
                     - this.castee.getLevel()) * Constants.FORTY);
-            System.out.println(gainedExp);
             this.caster.setExp(this.caster.getExp() + gainedExp);
-        } else {
-            System.out.println(caster + " hit " + this.castee
-                    + " with execute for " + finalDamage + " dmg");
         }
         int ret;
         if (this.caster.getCellPosition().getType().equals(
@@ -147,7 +123,7 @@ public class Execute extends Ability {
         return ret;
     }
     @Override
-    public final int use(Rogue rogue) {
+    public final int use(final Rogue rogue) {
         this.castee = rogue;
         float hpLimit;
         this.baseDamage = KNIGHT_EXECUTE_BASE_DAMAGE
@@ -162,11 +138,8 @@ public class Execute extends Ability {
         if (this.castee.getHp() < hpLimit) {
             this.finalDamage = Math.round(hpLimit);
             this.castee.setHp(this.castee.getHp() - this.finalDamage);
-            System.out.println(caster + " executed " + this.castee + " for "
-                    + this.finalDamage + " dmg");
             int gainedExp = Math.max(0, 2 * Constants.HUNDRED - (this.caster.getLevel()
                     - this.castee.getLevel()) * Constants.FORTY);
-            System.out.println(gainedExp);
             this.caster.setExp(this.caster.getExp() + gainedExp);
             if (this.caster.getCellPosition().getType().equals(
                     this.caster.getFavorableTerrain())) {
@@ -176,24 +149,15 @@ public class Execute extends Ability {
             }
         }
         float totalDamage = this.baseDamage;
-        //System.out.println(this.getClass().getSimpleName());
         for (Float modifier : this.modifiers) {
-            //System.out.print(modifier + " ");
-            //System.out.println();
             totalDamage *= modifier;
         }
         this.finalDamage = Math.round(totalDamage);
         this.castee.setHp(this.castee.getHp() - this.finalDamage);
         if (this.castee.getHp() <= 0) {
-            System.out.println(this.caster + " killed " + this.castee
-                    + " with " + this.getClass().getSimpleName());
             int gainedExp = Math.max(0, 2 * Constants.HUNDRED - (this.caster.getLevel()
                     - this.castee.getLevel()) * Constants.FORTY);
-            System.out.println(gainedExp);
             this.caster.setExp(this.caster.getExp() + gainedExp);
-        } else {
-            System.out.println(caster + " hit " + this.castee
-                    + " with execute for " + finalDamage + " dmg");
         }
         int ret;
         if (this.caster.getCellPosition().getType().equals(
@@ -206,7 +170,7 @@ public class Execute extends Ability {
         return ret;
     }
     @Override
-    public final int use(Wizard wizard) {
+    public final int use(final Wizard wizard) {
         this.castee = wizard;
         float hpLimit;
         this.baseDamage = KNIGHT_EXECUTE_BASE_DAMAGE
@@ -221,11 +185,8 @@ public class Execute extends Ability {
         if (this.castee.getHp() < hpLimit) {
             this.finalDamage = Math.round(hpLimit);
             this.castee.setHp(this.castee.getHp() - this.finalDamage);
-            System.out.println(caster + " executed " + this.castee + " for "
-                    + this.finalDamage + " dmg");
             int gainedExp = Math.max(0, 2 * Constants.HUNDRED - (this.caster.getLevel()
                     - this.castee.getLevel()) * Constants.FORTY);
-            System.out.println(gainedExp);
             this.caster.setExp(this.caster.getExp() + gainedExp);
             if (this.caster.getCellPosition().getType().equals(
                     this.caster.getFavorableTerrain())) {
@@ -235,24 +196,15 @@ public class Execute extends Ability {
             }
         }
         float totalDamage = this.baseDamage;
-        //System.out.println(this.getClass().getSimpleName());
         for (Float modifier : this.modifiers) {
-            //System.out.print(modifier + " ");
-            //System.out.println();
             totalDamage *= modifier;
         }
         this.finalDamage = Math.round(totalDamage);
         this.castee.setHp(this.castee.getHp() - this.finalDamage);
         if (this.castee.getHp() <= 0) {
-            System.out.println(this.caster + " killed " + this.castee
-                    + " with " + this.getClass().getSimpleName());
             int gainedExp = Math.max(0, 2 * Constants.HUNDRED - (this.caster.getLevel()
                     - this.castee.getLevel()) * Constants.FORTY);
-            System.out.println(gainedExp);
             this.caster.setExp(this.caster.getExp() + gainedExp);
-        } else {
-            System.out.println(caster + " hit " + this.castee
-                    + " with execute for " + finalDamage + " dmg");
         }
         int ret;
         if (this.caster.getCellPosition().getType().equals(
