@@ -10,6 +10,8 @@ public final class Constants {
     public static final float WIZARD_DESERT_MODIFIER = 1.1f;
     public static final float PYRO_VOLCANIC_MODIFIER = 1.25f;
     public static final float ROGUE_WOODS_MODIFIER = 1.15f;
+    public static final int ROGUE_HP = 600;
+    public static final int PYROMANCER_HP = 500;
     public static final int FORTY = 40;
     public static final int HUNDRED = 100;
     public static final int TEN = 10;

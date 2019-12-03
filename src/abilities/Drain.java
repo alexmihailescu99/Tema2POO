@@ -59,21 +59,24 @@ public class Drain extends Ability {
                 * this.caster.getLevel();
         float baseDmg = Math.min(POINT_TREE_PERCENT * this.castee.getMaxHp(),
                 this.castee.getHp());
+        System.out.println(this.getClass().getSimpleName());
         for (Float modifier : this.modifiers) {
+            System.out.print(modifier + " ");
+            System.out.println();
             percent *= modifier;
         }
         this.finalDamage = Math.round(percent * baseDmg);
         this.castee.setHp(this.castee.getHp() - this.finalDamage);
         if (this.castee.getHp() <= 0) {
             System.out.println(this.caster + " killed " + this.castee
-            + " with " + this.getClass().getSimpleName()
-            + " for " + this.finalDamage + " dmg");
+                    + " with " + this.getClass().getSimpleName()
+                    + " for " + this.finalDamage + " dmg");
             int gainedExp = Math.max(0, 2 * Constants.HUNDRED - (this.caster.getLevel()
                     - this.castee.getLevel()) * Constants.FORTY);
             this.caster.setExp(this.caster.getExp() + gainedExp);
         } else {
             System.out.println(this.caster + " hit " + this.castee + " with "
-            + this.getClass().getSimpleName() + " for " + this.finalDamage + " dmg");
+                    + this.getClass().getSimpleName() + " for " + this.finalDamage + " dmg");
         }
         int ret = this.finalDamage;
         this.clearAttributes();
@@ -86,7 +89,10 @@ public class Drain extends Ability {
                 * this.caster.getLevel();
         float baseDmg = Math.min(POINT_TREE_PERCENT * this.castee.getMaxHp(),
                 this.castee.getHp());
+        System.out.println(this.getClass().getSimpleName());
         for (Float modifier : this.modifiers) {
+            System.out.print(modifier + " ");
+            System.out.println();
             percent *= modifier;
         }
         this.finalDamage = Math.round(percent * baseDmg);
@@ -113,7 +119,10 @@ public class Drain extends Ability {
                 * this.caster.getLevel();
         float baseDmg = Math.min(POINT_TREE_PERCENT * this.castee.getMaxHp(),
                 this.castee.getHp());
+        System.out.println(this.getClass().getSimpleName());
         for (Float modifier : this.modifiers) {
+            System.out.print(modifier + " ");
+            System.out.println();
             percent *= modifier;
         }
         this.finalDamage = Math.round(percent * baseDmg);

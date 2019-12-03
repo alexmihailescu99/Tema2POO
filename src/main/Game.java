@@ -79,16 +79,15 @@ final class Game {
                 && firstPlayer.getHp() > 0 && secondPlayer.getHp() > 0) {
                     // Make sure the wizard always attacks second
                     // So he has damage to deflect
-                    if (firstPlayer instanceof Wizard
-                    && !(secondPlayer instanceof Wizard)) {
+                    if (firstPlayer instanceof Wizard) {
                         Player temp = secondPlayer;
                         secondPlayer = firstPlayer;
                         firstPlayer = temp;
                     }
                     secondPlayer.isAttackedBy(firstPlayer);
                     firstPlayer.isAttackedBy(secondPlayer);
-                    System.out.println(secondPlayer.getDmg());
-                    System.out.println(firstPlayer.getDmg());
+                    //System.out.println(secondPlayer.getDmg());
+                    //System.out.println(firstPlayer.getDmg());
                 }
             }
         }

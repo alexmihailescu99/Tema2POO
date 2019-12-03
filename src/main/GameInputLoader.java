@@ -33,11 +33,14 @@ final class GameInputLoader {
             // Populate the CellTypes matrix
             for (int i = 0; i < xMapSize; ++i) {
                 cellTypes.add(new ArrayList<>());
+                String myCell = fs.nextWord();
+                String[] splittedStr = myCell.split("", 0);
                 for (int j = 0; j < yMapSize; ++j) {
-                    cellTypes.get(i).add(fs.nextWord());
+                    cellTypes.get(i).add(splittedStr[j]);
                 }
             }
             noPlayers = fs.nextInt();
+            System.out.println(noPlayers);
             for (int i = 0; i < noPlayers; ++i) {
                 String playerRace = fs.nextWord();
                 String playerXPos = fs.nextWord();

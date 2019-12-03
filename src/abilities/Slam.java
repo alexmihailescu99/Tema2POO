@@ -30,13 +30,15 @@ public class Slam extends Ability {
         if (this.overtimePlayer != null) {
             this.overtimePlayer.setCurrOverTimeAbility(null);
             this.overtimePlayer.setCanMove(true);
-            System.out.println(this.overtimePlayer + " can now move!");
+            System.out.println(this.overtimePlayer + " is no longer suffering from"
+                    + this.getClass().getSimpleName());
+            this.overtimePlayer.setOverTimeAbilityRemainingRounds(0);
         }
     }
     @Override
     public final int use(Knight knight) {
         this.castee = knight;
-        this.baseDamage = Constants.HUNDRED + Constants.FORTY * this.castee.getLevel();
+        this.baseDamage = Constants.HUNDRED + Constants.FORTY * this.caster.getLevel();
         float totalDamage = this.baseDamage;
         //System.out.println(this.getClass().getSimpleName());
         for (Float modifier : this.modifiers) {
@@ -74,7 +76,7 @@ public class Slam extends Ability {
     @Override
     public final int use(Pyromancer pyromancer) {
         this.castee = pyromancer;
-        this.baseDamage = Constants.HUNDRED + Constants.FORTY * this.castee.getLevel();
+        this.baseDamage = Constants.HUNDRED + Constants.FORTY * this.caster.getLevel();
         float totalDamage = this.baseDamage;
         //System.out.println(this.getClass().getSimpleName());
         for (Float modifier : this.modifiers) {
@@ -112,7 +114,7 @@ public class Slam extends Ability {
     @Override
     public final int use(Rogue rogue) {
         this.castee = rogue;
-        this.baseDamage = Constants.HUNDRED + Constants.FORTY * this.castee.getLevel();
+        this.baseDamage = Constants.HUNDRED + Constants.FORTY * this.caster.getLevel();
         float totalDamage = this.baseDamage;
         //System.out.println(this.getClass().getSimpleName());
         for (Float modifier : this.modifiers) {
@@ -150,7 +152,7 @@ public class Slam extends Ability {
     @Override
     public final int use(Wizard wizard) {
         this.castee = wizard;
-        this.baseDamage = Constants.HUNDRED + Constants.FORTY * this.castee.getLevel();
+        this.baseDamage = Constants.HUNDRED + Constants.FORTY * this.caster.getLevel();
         float totalDamage = this.baseDamage;
         //System.out.println(this.getClass().getSimpleName());
         for (Float modifier : this.modifiers) {

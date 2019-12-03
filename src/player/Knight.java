@@ -43,12 +43,22 @@ public final class Knight extends Player {
         if (playerCell.getType().equals(this.getFavorableTerrain())) {
             this.execute.addModifier(Constants.KNIGHT_LAND_MODIFIER);
         }
+        this.execute.addModifier(ROGUE_EXECUTE_DMG_MODIFIER);
         this.execute.use(knight);
+        boolean wasAlreadyDead = false;
+        int prevExp = this.getExp();
+        if (knight.getHp() <= 0) {
+            wasAlreadyDead = true;
+        }
         if (playerCell.getType().equals(this.getFavorableTerrain())) {
             this.slam.addModifier(Constants.KNIGHT_LAND_MODIFIER);
         }
-        this.slam.addModifier(Constants.KNIGHT_ON_KNIGHT_SLAM_MODIFIER);
+
+        this.slam.addModifier(ROGUE_SLAM_DMG_MODIFIER);
         this.slam.use(knight);
+        if (wasAlreadyDead) {
+            this.setExp(prevExp);
+        }
         this.modifiers.clear();
     }
     @Override
@@ -58,13 +68,22 @@ public final class Knight extends Player {
         if (playerCell.getType().equals(this.getFavorableTerrain())) {
             this.execute.addModifier(Constants.KNIGHT_LAND_MODIFIER);
         }
-        this.execute.addModifier(PYRO_EXECUTE_DMG_MODIFIER);
+        this.execute.addModifier(ROGUE_EXECUTE_DMG_MODIFIER);
         this.execute.use(pyromancer);
+        boolean wasAlreadyDead = false;
+        if (pyromancer.getHp() <= 0) {
+            wasAlreadyDead = true;
+        }
         if (playerCell.getType().equals(this.getFavorableTerrain())) {
             this.slam.addModifier(Constants.KNIGHT_LAND_MODIFIER);
         }
-        this.slam.addModifier(PYRO_SLAM_DMG_MODIFIER);
+
+        this.slam.addModifier(ROGUE_SLAM_DMG_MODIFIER);
         this.slam.use(pyromancer);
+        int prevExp = this.getExp();
+        if (wasAlreadyDead) {
+            this.setExp(prevExp);
+        }
         this.modifiers.clear();
     }
     @Override
@@ -76,11 +95,20 @@ public final class Knight extends Player {
         }
         this.execute.addModifier(ROGUE_EXECUTE_DMG_MODIFIER);
         this.execute.use(rogue);
+        boolean wasAlreadyDead = false;
+        int prevExp = this.getExp();
+        if (rogue.getHp() <= 0) {
+            wasAlreadyDead = true;
+        }
         if (playerCell.getType().equals(this.getFavorableTerrain())) {
             this.slam.addModifier(Constants.KNIGHT_LAND_MODIFIER);
         }
+
         this.slam.addModifier(ROGUE_SLAM_DMG_MODIFIER);
         this.slam.use(rogue);
+        if (wasAlreadyDead) {
+            this.setExp(prevExp);
+        }
         this.modifiers.clear();
     }
     @Override
@@ -90,23 +118,22 @@ public final class Knight extends Player {
         if (playerCell.getType().equals(this.getFavorableTerrain())) {
             this.execute.addModifier(Constants.KNIGHT_LAND_MODIFIER);
         }
-        this.execute.addModifier(WIZZ_EXECUTE_DMG_MODIFIER);
-        int dmg1 = this.execute.use(wizard);
-        int prevExp = this.getExp();
+        this.execute.addModifier(ROGUE_EXECUTE_DMG_MODIFIER);
+        this.execute.use(wizard);
         boolean wasAlreadyDead = false;
+        int prevExp = this.getExp();
         if (wizard.getHp() <= 0) {
             wasAlreadyDead = true;
         }
         if (playerCell.getType().equals(this.getFavorableTerrain())) {
             this.slam.addModifier(Constants.KNIGHT_LAND_MODIFIER);
         }
-        this.slam.addModifier(WIZZ_SLAM_DMG_MODIFIER);
-        int dmg2 = this.slam.use(wizard);
+
+        this.slam.addModifier(ROGUE_SLAM_DMG_MODIFIER);
+        this.slam.use(wizard);
         if (wasAlreadyDead) {
             this.setExp(prevExp);
         }
-        this.dmg = dmg1 + dmg2;
-        System.out.println("I AM ADDING " + dmg1 + " and " + dmg2);
         this.modifiers.clear();
     }
 }

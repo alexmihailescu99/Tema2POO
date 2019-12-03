@@ -7,6 +7,8 @@ import misc.Map;
 import java.util.ArrayList;
 
 public abstract class Player {
+    private static final int TWO_HUNDRED_FIFTY = 250;
+    private static final int FIFTY = 50;
     protected int id;
     protected int hp;
     protected int maxHp;
@@ -53,13 +55,13 @@ public abstract class Player {
         }
     }
     public final void checkLevel() {
-        if (this.exp > 250 + this.level * 50) {
+        if (this.exp >= TWO_HUNDRED_FIFTY + this.level * FIFTY) {
+            System.out.println(this + " has " + this.exp + " exp");
             this.levelUp();
             this.checkLevel();
         } else {
             return;
         }
-        this.exp = 0;
     }
 
     public final void update() {
@@ -67,6 +69,7 @@ public abstract class Player {
         if (this.currOverTimeAbility != null) {
             if (this.getOverTimeAbilityRemainingRounds() == 0) {
                 this.currOverTimeAbility.removeOverTimeEffects();
+                this.setCurrOverTimeAbility(null);
             }
         }
         this.dmg = 0;

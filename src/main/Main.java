@@ -17,6 +17,7 @@ public final class Main {
 //            player.update();
 //        }
         for (int i = 0; i < Game.getInstance().getRounds(); ++i) {
+            System.out.println("Round " + i);
             for (int j = 0; j < Game.getInstance().getPlayers().size(); ++j) {
                 Player currPlayer = Game.getInstance().getPlayers().get(j);
                 String currCommand = Game.getInstance().getPlayerCommands().get(0);

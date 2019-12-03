@@ -46,6 +46,10 @@ public class Execute extends Ability {
             this.castee.setHp(this.castee.getHp() - this.finalDamage);
             System.out.println(caster + " executed " + this.castee + " for "
                     + this.finalDamage + " dmg");
+            int gainedExp = Math.max(0, 2 * Constants.HUNDRED - (this.caster.getLevel()
+                    - this.castee.getLevel()) * Constants.FORTY);
+            System.out.println(gainedExp);
+            this.caster.setExp(this.caster.getExp() + gainedExp);
             if (this.caster.getCellPosition().getType().equals(
                     this.caster.getFavorableTerrain())) {
                 return Math.round(this.baseDamage * Constants.KNIGHT_LAND_MODIFIER);
@@ -70,7 +74,8 @@ public class Execute extends Ability {
             System.out.println(gainedExp);
             this.caster.setExp(this.caster.getExp() + gainedExp);
         } else {
-            System.out.println(caster + " hit " + this.castee + " with execute for " + finalDamage + " dmg");
+            System.out.println(caster + " hit " + this.castee
+                    + " with execute for " + finalDamage + " dmg");
         }
         int ret;
         if (this.caster.getCellPosition().getType().equals(
@@ -100,6 +105,10 @@ public class Execute extends Ability {
             this.castee.setHp(this.castee.getHp() - this.finalDamage);
             System.out.println(caster + " executed " + this.castee + " for "
                     + this.finalDamage + " dmg");
+            int gainedExp = Math.max(0, 2 * Constants.HUNDRED - (this.caster.getLevel()
+                    - this.castee.getLevel()) * Constants.FORTY);
+            System.out.println(gainedExp);
+            this.caster.setExp(this.caster.getExp() + gainedExp);
             if (this.caster.getCellPosition().getType().equals(
                     this.caster.getFavorableTerrain())) {
                 return Math.round(this.baseDamage * Constants.KNIGHT_LAND_MODIFIER);
@@ -124,7 +133,8 @@ public class Execute extends Ability {
             System.out.println(gainedExp);
             this.caster.setExp(this.caster.getExp() + gainedExp);
         } else {
-            System.out.println(caster + " hit " + this.castee + " with execute for " + finalDamage + " dmg");
+            System.out.println(caster + " hit " + this.castee
+                    + " with execute for " + finalDamage + " dmg");
         }
         int ret;
         if (this.caster.getCellPosition().getType().equals(
@@ -154,6 +164,10 @@ public class Execute extends Ability {
             this.castee.setHp(this.castee.getHp() - this.finalDamage);
             System.out.println(caster + " executed " + this.castee + " for "
                     + this.finalDamage + " dmg");
+            int gainedExp = Math.max(0, 2 * Constants.HUNDRED - (this.caster.getLevel()
+                    - this.castee.getLevel()) * Constants.FORTY);
+            System.out.println(gainedExp);
+            this.caster.setExp(this.caster.getExp() + gainedExp);
             if (this.caster.getCellPosition().getType().equals(
                     this.caster.getFavorableTerrain())) {
                 return Math.round(this.baseDamage * Constants.KNIGHT_LAND_MODIFIER);
@@ -178,7 +192,8 @@ public class Execute extends Ability {
             System.out.println(gainedExp);
             this.caster.setExp(this.caster.getExp() + gainedExp);
         } else {
-            System.out.println(caster + " hit " + this.castee + " with execute for " + finalDamage + " dmg");
+            System.out.println(caster + " hit " + this.castee
+                    + " with execute for " + finalDamage + " dmg");
         }
         int ret;
         if (this.caster.getCellPosition().getType().equals(
@@ -208,6 +223,10 @@ public class Execute extends Ability {
             this.castee.setHp(this.castee.getHp() - this.finalDamage);
             System.out.println(caster + " executed " + this.castee + " for "
                     + this.finalDamage + " dmg");
+            int gainedExp = Math.max(0, 2 * Constants.HUNDRED - (this.caster.getLevel()
+                    - this.castee.getLevel()) * Constants.FORTY);
+            System.out.println(gainedExp);
+            this.caster.setExp(this.caster.getExp() + gainedExp);
             if (this.caster.getCellPosition().getType().equals(
                     this.caster.getFavorableTerrain())) {
                 return Math.round(this.baseDamage * Constants.KNIGHT_LAND_MODIFIER);
@@ -232,7 +251,8 @@ public class Execute extends Ability {
             System.out.println(gainedExp);
             this.caster.setExp(this.caster.getExp() + gainedExp);
         } else {
-            System.out.println(caster + " hit " + this.castee + " with execute for " + finalDamage + " dmg");
+            System.out.println(caster + " hit " + this.castee
+                    + " with execute for " + finalDamage + " dmg");
         }
         int ret;
         if (this.caster.getCellPosition().getType().equals(

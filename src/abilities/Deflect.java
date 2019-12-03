@@ -62,13 +62,16 @@ public class Deflect extends Ability {
         float percent = INITIAL_PERCENT + (POINT_TWO_PERCENT / TEN)
                 * this.caster.getLevel();
         int damageDealtByEnemy = this.castee.getDmg();
-        if (this.castee.getCellPosition().getType()
-                == this.castee.getFavorableTerrain()) {
-            percent *= Constants.KNIGHT_LAND_MODIFIER;
+        System.out.println(this.getClass().getSimpleName());
+        for (Float modifier : this.modifiers) {
+            System.out.print(modifier + " ");
+            System.out.println();
+            percent *= modifier;
         }
         if (percent > PERCENT_LIMIT) {
             percent = PERCENT_LIMIT;
         }
+        System.out.println(this.caster + " 's percent on deflect is " + percent);
         this.finalDamage = Math.round(percent * this.castee.getDmg());
         this.castee.setHp(this.castee.getHp() - finalDamage);
         if (this.castee.getHp() <= 0) {
@@ -90,13 +93,16 @@ public class Deflect extends Ability {
         float percent = INITIAL_PERCENT + (POINT_TWO_PERCENT / TEN)
                 * this.caster.getLevel();
         int damageDealtByEnemy = this.castee.getDmg();
+        System.out.println(this.getClass().getSimpleName());
         for (Float modifier : this.modifiers) {
-            System.out.println(modifier);
+            System.out.print(modifier + " ");
+            System.out.println();
             percent *= modifier;
         }
         if (percent > PERCENT_LIMIT) {
             percent = PERCENT_LIMIT;
         }
+        System.out.println(this.caster + " 's percent on deflect is " + percent);
         this.finalDamage = Math.round(percent * this.castee.getDmg());
         this.castee.setHp(this.castee.getHp() - finalDamage);
         if (this.castee.getHp() <= 0) {

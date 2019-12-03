@@ -19,19 +19,19 @@ public class Fireblast extends Ability {
         //
     }
     @Override
-    public int use(Knight knight) {
+    public final int use(Knight knight) {
         return 0;
     }
     @Override
-    public int use(Pyromancer pyromancer) {
+    public final int use(Pyromancer pyromancer) {
         return 0;
     }
     @Override
-    public int use(Rogue rogue) {
+    public final int use(Rogue rogue) {
         return 0;
     }
     @Override
-    public int use(Wizard wizard) {
+    public final int use(Wizard wizard) {
         return 0;
     }
 }
